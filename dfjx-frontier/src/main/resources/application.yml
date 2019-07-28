@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: dfjx-frontier
+
+server:
+  port: 8801
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+ribbon:
+  eureka:
+    enabled: true
+
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: true
+    exception-handlers-enabled: true
+
+seaboxdata:
+  core:
+    idgenerator:
+      #mode: local
+      mode: snowflake
+      datacenter: 1
+      worker: 1
+  service:
+    hostname: localhost:8802
+
+logging:
+  level:
+    "org.springframework": info

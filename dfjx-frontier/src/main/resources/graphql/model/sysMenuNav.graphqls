@@ -1,0 +1,6 @@
+extend type Query {
+
+    # 菜单
+    sysMenuNav: [SysMenuDto]
+
+}

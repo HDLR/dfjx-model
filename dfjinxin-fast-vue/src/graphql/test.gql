@@ -1,0 +1,14 @@
+query testModel ($id: String) {
+  testModel: queryName(id: $id) {
+    ...TestResult
+  }
+}
+
+fragment TestResult on TestResult {
+    #姓名
+    name
+    #代码
+    code
+    #备注信息
+    bz
+}

@@ -1,0 +1,15 @@
+extend type Query {
+
+    # 测试 分析结果
+    queryName(id: String): TestResult
+
+}
+
+type TestResult {
+    #姓名
+    name: String
+    #代码
+    code: String
+    #备注信息
+    bz: String
+}

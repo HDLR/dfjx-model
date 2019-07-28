@@ -1,0 +1,33 @@
+type SysMenuDto {
+    #菜单ID
+    menuId: Long
+
+    #父菜单ID，一级菜单为0
+    parentId: Long
+    
+    #父菜单名称
+    parentName: String
+
+    #菜单名称
+    name: String
+
+    #菜单URL
+    url: String
+
+    #授权(多个用逗号分隔，如：user:list,user:create)
+    perms: String
+
+    #类型     0：目录   1：菜单   2：按钮
+    type: Int
+
+    #菜单图标
+    icon: String
+
+    #排序
+    orderNum: Int
+    
+    #ztree属性
+    open: Boolean
+
+    list: [Object]
+}

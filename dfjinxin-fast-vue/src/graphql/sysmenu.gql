@@ -1,0 +1,33 @@
+fragment SysMenu on SysMenuDto {
+    #菜单ID
+    menuId
+
+    #父菜单ID，一级菜单为0
+    parentId
+
+    #父菜单名称
+    parentName
+
+    #菜单名称
+    name
+
+    #菜单URL
+    url
+
+    #授权(多个用逗号分隔，如：user:list,user:create)
+    perms
+
+    #类型     0：目录   1：菜单   2：按钮
+    type
+
+    #菜单图标
+    icon
+
+    #排序
+    orderNum
+
+    #ztree属性
+    open
+
+    list
+}

@@ -1,0 +1,7 @@
+#import "./sysmenu.gql"
+
+query menuTree {
+  menuTree: sysMenuList {
+    ...SysMenu
+  }
+}
