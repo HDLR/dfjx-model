@@ -9,6 +9,8 @@ import Router from 'vue-router'
 import http from '@/utils/httpRequest'
 import { isURL } from '@/utils/validate'
 import { clearLoginInfo } from '@/utils'
+import {createProvider} from '../vue-apollo'
+import QUERY_NAVIGATION_DATA from '@/graphql/navigation.gql'
 
 Vue.use(Router)
 
@@ -59,27 +61,30 @@ router.beforeEach((to, from, next) => {
     if (router.options.isAddDynamicMenuRoutes || fnCurrentRouteType(to, globalRoutes) === 'global') {
         next()
     } else {
-        http({
-            url: http.adornUrl('/sys/menu/nav'),
-            method: 'get',
-            params: http.adornParams()
-        }).then(({data}) => {
-            console.log(data)
-            if (data) {
-                fnAddDynamicMenuRoutes(data)
+
+        //查询菜单展示内容
+        createProvider().defaultClient.query({
+            query: QUERY_NAVIGATION_DATA,
+            fetchPolicy: 'network-only',
+            variables: {
+
+            }
+        }).then(({data: {navigation}}) => {
+            if(navigation){
+                fnAddDynamicMenuRoutes(navigation)
                 router.options.isAddDynamicMenuRoutes = true
-                sessionStorage.setItem('menuList', JSON.stringify(data || '[]'))
+                sessionStorage.setItem('menuList', JSON.stringify(navigation || '[]'))
                 sessionStorage.setItem('permissions', '[]')
                 next({ ...to, replace: true })
-            } else {
+            }else{
                 sessionStorage.setItem('menuList', '[]')
                 sessionStorage.setItem('permissions', '[]')
                 next()
             }
-        }).catch((e) => {
-            console.log(`%c${e} 请求菜单列表和权限失败，跳转至登录页！！`, 'color:blue')
-            // router.push({ name: 'home' })
-        })
+
+        }).catch((error) => {
+            console.log(error)
+        });
     }
 })
 
