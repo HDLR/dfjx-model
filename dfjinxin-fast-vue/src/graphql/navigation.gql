@@ -1,0 +1,7 @@
+#import "./sysmenu.gql"
+
+query navigation {
+  navigation: sysMenuNav {
+    ...SysMenu
+  }
+}
