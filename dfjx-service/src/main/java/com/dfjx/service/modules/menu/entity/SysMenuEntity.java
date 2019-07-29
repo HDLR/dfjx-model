@@ -97,7 +97,7 @@ public class SysMenuEntity implements Serializable {
 		}
 		SysMenuDto to = new SysMenuDto();
 		BeanUtils.copyProperties(from, to);
-		to.setList(from.getList());
+//		to.setList(from.getList());
 		return Optional.of(to);
 	}
 }
