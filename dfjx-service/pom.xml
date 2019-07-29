@@ -157,7 +157,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.seaboxdata.mds.service.MdsServiceApplication</mainClass>
+                    <mainClass>com.dfjx.service.DfjxServiceApplication</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
                 <executions>
